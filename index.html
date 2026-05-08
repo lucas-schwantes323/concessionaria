@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Concessionaria</title>
+</head>
+<body>
+    <header>
+        <h1>Concessionária Premium</h1>
+        <nav>
+            <button id="botaoInicio">Início</button>
+            <button id="botaoCadastrar">Cadastrar</button>
+            <button id="botaoRemover">Remover</button>
+            <button id="botaoListar">Ver Veículos</button>
+        </nav>
+        <div><p>User logado</p></div>
+    </header>
+    <main>
+        <section id="secaoHome">
+            <h2>Bem-vindo à Concessionária Premium</h2>
+            <p>Sistema de gerenciamento da concessionária.</p>
+        </section>
+        <section id="secaoCadastrar">
+            <h2>Cadastrar Veículo</h2>
+            <form id="formularioCadastro">
+                <label for="marca">Marca: </label>
+                <input type="text" placeholder="Marca" id="marca">
+                <label for="modelo">Modelo: </label>
+                <input type="text" placeholder="Modelo" id="modelo">
+                <label for="ano">Ano: </label>
+                <input type="number" placeholder="Ano" id="ano">
+                <label for="preco">Preço: </label>
+                <input type="number" placeholder="Preço" id="preco">
+                <button type="submit">Cadastrar</button>
+            </form>
+        </section>
+        <section id="secaoRemover">
+            <h2>Remover Veículo</h2>
+            <form>
+                <label for="id">ID: </label>
+                <input type="number" placeholder="ID" id="id">
+                <button type="submit">Remover</button>
+            </form>
+        </section>
+        <section id="secaoListar">
+            <h2>Veículos Cadastrados</h2>
+            <div class="listaCarros"></div>
+        </section>
+    </main> 
+    <script src="index.js"></script>
+</body>
+</html>
