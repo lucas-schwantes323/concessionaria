@@ -9,9 +9,13 @@ const secaoRemocao = document.querySelector('#secaoRemover');
 const secaoHome = document.querySelector('#secaoHome');
 
 const formularioCadastro = document.getElementById('formularioCadastro');
-
+const formularioRemover = document.getElementById("formularioRemover");
 
 const carros = [];
+
+secaoCadastro.style.display = "none";
+secaoLista.style.display = "none";
+secaoRemocao.style.display = "none";
 
 
 function esconderSecoes(...idSecoes){
@@ -23,15 +27,7 @@ function esconderSecoes(...idSecoes){
     }
 }
 
-function criarCarro(marca, modelo, ano, preco){
-    return {
-        id: Date.now(),
-        marca: marca,
-        modelo: modelo,
-        ano: ano,
-        preco: preco
-    }
-}
+let proximoId = 1;
 
 function validarEntradaFormulario(marca, modelo, ano, preco){
     if(!marca || !modelo || !ano || !preco){
@@ -40,6 +36,27 @@ function validarEntradaFormulario(marca, modelo, ano, preco){
     }
     return true;
 }
+
+function criarCarro(marca, modelo, ano, preco){
+    return {
+        id: proximoId++,
+        marca: marca,
+        modelo: modelo,
+        ano: ano,
+        preco: preco
+    }
+}
+
+function remmoverCarro(id){
+    const index = carros.findIndex(carro => carro.id === id);
+    if(index !== -1){
+        carros.splice(index, 1);
+        return true;
+    }
+    return false;
+
+}
+
 
 formularioCadastro.addEventListener("submit", (evento)=>{
     evento.preventDefault();
@@ -54,11 +71,21 @@ formularioCadastro.addEventListener("submit", (evento)=>{
 
     const carro = criarCarro(marca, modelo, ano, preco);
     carros.push(carro);
-
+    alert(`Carro ${marca} ${modelo} cadastrado com sucesso!`);
     formularioCadastro.reset();
 })
 
-
+formularioRemover.addEventListener("submit", (evento) =>{
+    evento.preventDefault();
+    const id = parseInt(document.getElementById("id").value);
+    const removido = remmoverCarro(id);
+    if(removido){
+        alert(`Carro com ID ${id} removido com sucesso!`);
+    }
+    else{
+        alert(`Carro com ID ${id} não encontrado.`);
+    }
+})
 
 
 botaoInicio.addEventListener('click', () => {
