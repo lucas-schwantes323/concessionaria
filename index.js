@@ -88,21 +88,52 @@ formularioRemover.addEventListener("submit", (evento) =>{
 })
 
 
+function criarInfoCarroHTML(chave, texto){
+    let p = document.createElement("p")
+    let span = document.createElement("span")
+    span.textContent = chave
+    p.appendChild(span)
+    p.appendChild(document.createTextNode(texto))
+    return p
+}
+
+function criarHTMLCarro(carro){
+    let imgCarro = document.createElement("img")
+    imgCarro.setAttribute("alt","imagemCarro")
+    imgCarro.setAttribute("src", "https://placeholder.com")
+    let carroHTML = document.createElement("div")
+    let divInfo = document.createElement("div")
+    divInfo.setAttribute("class", "carroInfo")
+    carroHTML.setAttribute("class", "carro")
+    for(let chave in carro){
+        let info = criarInfoCarroHTML(chave, carro[chave])
+        divInfo.appendChild(info)
+    }
+    carroHTML.appendChild(imgCarro)
+    carroHTML.appendChild(divInfo)
+    return carroHTML
+}
+
+// const carroTeste = criarCarro("Toyota", "Corolla", 2023, 33000)
+// const elementoCarro = criarHTMLCarro(carroTeste)
+// document.body.appendChild(elementoCarro)
+
+
 botaoInicio.addEventListener('click', () => {
     esconderSecoes("secaoCadastrar", "secaoRemover", "secaoListar")
-    secaoHome.style.display = "block";
+    secaoHome.style.display = "flex";
 });
 botaoCadastrar.addEventListener('click', () => {{
     esconderSecoes("secaoHome", "secaoRemover", "secaoListar")
-    secaoCadastro.style.display = 'block';
+    secaoCadastro.style.display = 'flex';
 
 }});
 botaoRemover.addEventListener("click", () =>{
     esconderSecoes("secaoCadastrar", "secaoHome", "secaoListar")
-    secaoRemocao.style.display = "block";
+    secaoRemocao.style.display = "flex";
 })
 botaoListar.addEventListener("click", () =>{
     esconderSecoes("secaoCadastrar", "secaoHome", "secaoRemover")
-    secaoLista.style.display = "block";         
+    secaoLista.style.display = "flex";         
 
 });
