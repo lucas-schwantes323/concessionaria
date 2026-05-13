@@ -47,7 +47,7 @@ function criarCarro(marca, modelo, ano, preco){
     }
 }
 
-function remmoverCarro(id){
+function removerCarro(id){
     const index = carros.findIndex(carro => carro.id === id);
     if(index !== -1){
         carros.splice(index, 1);
@@ -78,7 +78,7 @@ formularioCadastro.addEventListener("submit", (evento)=>{
 formularioRemover.addEventListener("submit", (evento) =>{
     evento.preventDefault();
     const id = parseInt(document.getElementById("id").value);
-    const removido = remmoverCarro(id);
+    const removido = removerCarro(id);
     if(removido){
         alert(`Carro com ID ${id} removido com sucesso!`);
     }
@@ -91,16 +91,17 @@ formularioRemover.addEventListener("submit", (evento) =>{
 function criarInfoCarroHTML(chave, texto){
     let p = document.createElement("p")
     let span = document.createElement("span")
-    span.textContent = chave
+    const chaveFormatada = chave.charAt(0).toUpperCase() + chave.slice(1)
+    span.textContent = chaveFormatada
     p.appendChild(span)
-    p.appendChild(document.createTextNode(texto))
+    p.appendChild(document.createTextNode(": " + texto))
     return p
 }
 
 function criarHTMLCarro(carro){
     let imgCarro = document.createElement("img")
     imgCarro.setAttribute("alt","imagemCarro")
-    imgCarro.setAttribute("src", "https://placeholder.com")
+    imgCarro.setAttribute("src", "./download.jpeg" )
     let carroHTML = document.createElement("div")
     let divInfo = document.createElement("div")
     divInfo.setAttribute("class", "carroInfo")
@@ -113,7 +114,14 @@ function criarHTMLCarro(carro){
     carroHTML.appendChild(divInfo)
     return carroHTML
 }
-
+function listarCarros(){
+    const divCarros = document.getElementById("listaCarros");
+    divCarros.innerHTML = "";
+    for(let carro of carros){
+        const carroHTML = criarHTMLCarro(carro);
+        divCarros.appendChild(carroHTML);
+    }
+}
 // const carroTeste = criarCarro("Toyota", "Corolla", 2023, 33000)
 // const elementoCarro = criarHTMLCarro(carroTeste)
 // document.body.appendChild(elementoCarro)
@@ -135,5 +143,5 @@ botaoRemover.addEventListener("click", () =>{
 botaoListar.addEventListener("click", () =>{
     esconderSecoes("secaoCadastrar", "secaoHome", "secaoRemover")
     secaoLista.style.display = "flex";         
-
+    listarCarros();
 });

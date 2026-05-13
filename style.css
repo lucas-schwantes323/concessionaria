@@ -59,3 +59,24 @@ form input{
 label{
     font-weight: bold;
 }
+.carro {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    box-shadow: 0 20px 15px rgba(0,0,0, 0.4);
+    padding: 20px;
+    border-radius: 15px;
+}
+.carroInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.carroInfo span{
+    font-weight: bold;
+}
+.carro img{
+    width: 100%;
+    max-width: 250px;
+    border-radius: 15px;
+}
